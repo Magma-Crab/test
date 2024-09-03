@@ -1,14 +1,14 @@
 <?php
-    class MySqlReader
-    {
-        private $conn;
+    require_once("DBReader.php");
 
+    class MySqlReader extends DBReader
+    {
         public function __construct()
         {
             $this->conn = new PDO('mysql:host=localhost; dbname=news;', 'root', 'admin');
         }
 
-        public function getRow(array &$data, int $n) : int
+        public function getRow(int $n) : array
         {
             $q = "SELECT * FROM news ORDER BY date DESC LIMIT 1 OFFSET $n;";
             $q = $this->conn->prepare($q);
@@ -16,7 +16,7 @@
 
             $data = $q->fetch(PDO::FETCH_ASSOC);
             
-            return 0;
+            return $data;
         }
 
         public function countRows() : int
@@ -27,14 +27,6 @@
 
             $ret = $q->fetch(PDO::FETCH_ASSOC);
             return $ret['COUNT(*)'];
-        }
-
-        public function execute(array &$data, string $query)
-        {
-            $query = $this->conn->prepare($query);
-            $query->execute();
-
-            $data = $query->fetch(PDO::FETCH_ASSOC);
         }
     }
 ?>

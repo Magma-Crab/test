@@ -1,16 +1,12 @@
 <?php
     require_once("MySqlReader.php"); 
 
-    class News
+    class Row
     {
-        private array $data = array();
-
-        public function __construct(int $n)
-        {
-            $r = new MySqlReader();
-
-            $r->getRow($this->data, $n);
-        }
+        public function __construct(
+            private array $data
+            )
+        {}
 
         public function getDate()
         {

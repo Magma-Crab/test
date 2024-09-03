@@ -1,13 +1,10 @@
 <?php
     abstract class DBReader
     {
-        private int $connection;
+        protected $conn;
 
-        function __construct()
-        {
-            
-        }
+        abstract public function getRow(int $n) : array;
 
-        abstract function getData(array &$data) : int;
+        abstract public function countRows() : int;
     }
 ?>
