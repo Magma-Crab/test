@@ -1,6 +1,10 @@
 <?php
     require_once("MainPagePrinter.php");
+    require_once("DI.php");
 
-    $a = new MainPagePrinter(new MySqlReader());
+    $di = new DI();
+    $di->configure("settings.xml");
+
+    $a = new MainPagePrinter($di);
     $a->printPage();
 ?>

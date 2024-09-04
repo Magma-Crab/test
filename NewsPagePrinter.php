@@ -4,10 +4,10 @@
     class NewsPagePrinter extends PagePrinter
     {
         public function __construct(
-            DBReader $conn
+            DBReader $di
             )
         {
-            parent::__construct($conn);
+            parent::__construct($di);
         }
 
         public function printPage() : void
@@ -44,17 +44,22 @@
             $img = $news->getImage();
     
             print <<< _HTML_
-                <div> 
-                    Главная \ $title
+                <div class = "news-path"> 
+                    <a href = "index.php">Главная /</a>
+                    <span class = "current-news">$title</span>
                 </div>
-                <div class = "title">$title</div>
+                <h1>$title</h1>
                 <div class = "date">$date</div>
-                <div>
-                    <div>$announce</div>
-                    <div>$content</div>
-                    <img src = "images/$img" />
+                <div class = "content">
+                    <div class = "content-text">
+                        <h3 class = "content-announce">$announce</h3>
+                        <div>$content</div>
+                    </div>
+                    <picture class = "content-image">
+                        <img src = "images/$img" /> 
+                    </picture>
                 </div>
-                <a href = index.php class = "more"> ← Назад к новостям </a>
+                <a href = index.php class = "back"> ← Назад к новостям </a>
             _HTML_;
         }
     }

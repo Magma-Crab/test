@@ -1,13 +1,18 @@
 <?php
-    require_once("MySqlReader.php");
+    require_once("DBReader.php");
     require_once("Row.php");
+    require_once("DI.php");
 
     abstract class PagePrinter
     {
+        protected $conn;
+
         public function __construct(
-            protected DBReader $conn
+            DI $di
             )
-        {}
+        {
+            $this->conn = $di->get(DBReader::class);
+        }
 
         abstract public function printPage() : void; 
 
@@ -16,10 +21,10 @@
             print <<< _HTML_
                 <header class = "header">
                     <img src = "images\logo.png" />
-                    <text>
+                    <div>
                         ГАЛАКТИЧЕСКИЙ<br>
                         ВЕСТНИК
-                    </text>
+                    </div>
                 </header>
             _HTML_;
         }

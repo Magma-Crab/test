@@ -3,9 +3,14 @@
 
     class MySqlReader extends DBReader
     {
-        public function __construct()
+        public function __construct(
+            string $host,
+            string $dbname,
+            string $user,
+            string $password
+         )
         {
-            $this->conn = new PDO('mysql:host=localhost; dbname=news;', 'root', 'admin');
+            $this->conn = new PDO("mysql:host=$host; dbname=$dbname;", $user, $password);
         }
 
         public function getRow(int $n) : array

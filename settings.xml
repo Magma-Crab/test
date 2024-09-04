@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<objects>
+    <config>
+        <elem name = "newsPerPage">8</elem>
+    </config>
+    <class name = "DBReader">
+        <instance inst = "MySqlReader">
+            <arg>localhost</arg>
+            <arg>news</arg>
+            <arg>root</arg>
+            <arg>admin</arg>
+        </instance>
+    </class>
+</objects>

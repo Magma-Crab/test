@@ -4,15 +4,17 @@
     class MainPagePrinter extends PagePrinter
     {
         private int $maxRows = 0;
-        private int $maxNewsElems = 4;
+        private int $newsPerPage = 0;
         private int $currentPage = 0;
         private int $maxPage = 0;
 
-        public function __construct(DBReader $conn)
+        public function __construct(DI $di)
         {
-            parent::__construct($conn);
+            parent::__construct($di);
+            $this->newsPerPage = $di->get('newsPerPage');
+
             $this->maxRows = $this->conn->countRows();
-            $this->maxPage = ceil($this->maxRows / $this->maxNewsElems);
+            $this->maxPage = ceil($this->maxRows / $this->newsPerPage);
 
             if (isset($_GET['page']))
             {
@@ -59,10 +61,10 @@
             print <<< _HTML_
                 <div class = "banner">
                     <img src = "images/$img">
-                    <text>
+                    <div class = "banner-text">
                         <h1>$title</h1>
                         $text
-                    </text>
+                    </div>
                 </div>
             _HTML_;
         }
@@ -70,14 +72,13 @@
         public function printNewsList() : void
         {    
             print <<< _HTML_
-                <div class = "news-block">
-                    <h2>Новости</h2>
-                    <div class = "news-list">
+                <h2>Новости</h2>
+                <div class = "news-list">
             _HTML_;
     
-            for ($i = 0; $i < $this->maxNewsElems; $i++)
+            for ($i = 0; $i < $this->newsPerPage; $i++)
             {
-                $num = $this->currentPage * $this->maxNewsElems + $i;
+                $num = $this->currentPage * $this->newsPerPage + $i;
     
                 if ($num >= $this->maxRows)
                 {
@@ -95,8 +96,8 @@
                     <form action = "NewsPage.php" method = "GET">
                         <button class = "news" type = "submit" name = "num" value = "$num">
                             <div class = "date">$date</div>
-                            <p class = "title">$title</p>
-                            <p class = "announce-news">$announce</p>
+                            <h3>$title</h3>
+                            <div class = "announce">$announce</div>
                             <div class = "more">ПОДРОБНЕЕ →</div>
                         </button>
                     </form>
@@ -104,7 +105,6 @@
             }
             
             print <<< _HTML_
-                    </div>
                 </div>
             _HTML_;
         }
@@ -123,7 +123,7 @@
                     </form>
                 _HTML_;
             }
-            if ($this->currentPage * $this->maxNewsElems + 1 < $this->maxRows)
+            if ($this->currentPage * $this->newsPerPage + 1 < $this->maxRows)
             {
                 $nextPage = $this->currentPage + 2;
                 print <<< _HTML_
