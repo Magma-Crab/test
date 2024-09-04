@@ -4,7 +4,7 @@
     class NewsPagePrinter extends PagePrinter
     {
         public function __construct(
-            DBReader $di
+            DI $di
             )
         {
             parent::__construct($di);
@@ -23,7 +23,10 @@
                 <div class = "work-area">
             _HTML_;
                 $this->printHeader();
-                $this->printContent();
+                if($this->printContent())
+                {
+                    $this->printError();
+                };
                 $this->printFooter();
             print <<< _HTML_
                 </div>
@@ -32,10 +35,28 @@
             _HTML_;
         }
         
-        public function printContent() : void
+        public function printContent() : int
         {
+            $error = 0;
+
+            if (!isset($_GET['num']))
+            {
+                $error = 1;
+            }
+
             $num = $_GET['num'];
-            $news = $news = new Row($this->conn->getRow($num));
+
+            if (!(is_numeric($num) && ($num >= 0) && $num <= $this->maxRows && (int)$num == $num))
+            {
+                $error = 1;
+            }
+
+            if ($error)
+            {
+                return $error;
+            }
+
+            $news = new Row($this->conn->getRow($num));
     
             $title = $news->getTitle();
             $date = date('d.m.Y', strtotime($news->getDate()));
@@ -59,6 +80,18 @@
                         <img src = "images/$img" /> 
                     </picture>
                 </div>
+                <a href = index.php class = "back"> ← Назад к новостям </a>
+            _HTML_;
+
+            return 0;
+        }
+
+        public function printError() : void
+        {
+            print <<< _HTML_
+                <h1>
+                    Страница не найдена
+                </h1>
                 <a href = index.php class = "back"> ← Назад к новостям </a>
             _HTML_;
         }

@@ -6,12 +6,14 @@
     abstract class PagePrinter
     {
         protected $conn;
+        protected int $maxRows = 0;
 
         public function __construct(
             DI $di
             )
         {
             $this->conn = $di->get(DBReader::class);
+            $this->maxRows = $this->conn->countRows();
         }
 
         abstract public function printPage() : void; 

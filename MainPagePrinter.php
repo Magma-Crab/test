@@ -3,7 +3,6 @@
 
     class MainPagePrinter extends PagePrinter
     {
-        private int $maxRows = 0;
         private int $newsPerPage = 0;
         private int $currentPage = 0;
         private int $maxPage = 0;
@@ -12,14 +11,12 @@
         {
             parent::__construct($di);
             $this->newsPerPage = $di->get('newsPerPage');
-
-            $this->maxRows = $this->conn->countRows();
             $this->maxPage = ceil($this->maxRows / $this->newsPerPage);
 
             if (isset($_GET['page']))
             {
                 $page = $_GET['page'];
-                if (is_numeric($page) && ($page > 0) && $page <= $this->maxPage)
+                if (is_numeric($page) && ($page > 0) && $page <= $this->maxPage && (int)$page == $page)
                 {
                     $this->currentPage = $page - 1;
                 }
