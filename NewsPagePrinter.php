@@ -72,17 +72,19 @@
                 <h1>$title</h1>
                 <div class = "date">$date</div>
                 <div class = "content">
-                    <div class = "content-text">
+                    <div class = "content-left">
                         <h3 class = "content-announce">$announce</h3>
-                        <div>$content</div>
+                        $content
+                        <a href = index.php class = "back"> ← Назад к новостям </a>
                     </div>
-                    <picture class = "content-image">
-                        <img src = "images/$img" /> 
-                    </picture>
+                    <div class = "content-right">
+                        <picture class ="content-image">
+                            <img src = "images/$img" />
+                        </picture>
+                    </div>
                 </div>
-                <a href = index.php class = "back"> ← Назад к новостям </a>
             _HTML_;
-
+            
             return 0;
         }
 

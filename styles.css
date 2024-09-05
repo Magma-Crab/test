@@ -13,12 +13,12 @@ body::-webkit-scrollbar
 h1
 {
     font-size: 3.3vw;
-    font-weight: 500;
+    font-weight: 600;
 }
 h2
 {
-    font-size: 3vw;
-    font-weight: 650;
+    font-size: 3.3vw;
+    font-weight: 600;
 }
 h3
 {
@@ -26,12 +26,17 @@ h3
     font-weight: 600;
 }
 
+:root
+{
+    --default-margin-left: 10vw;
+    --default-margin-right: 10vw;
+    --default-border: 2px solid;
+}
+
 .work-area
 {
-    margin-left: 10vw;
-    margin-right: 10vw;
-    
-    font-family: 'Open Sans', sans-serif;
+    margin-left: var(--default-margin-left);
+    margin-right: var(--default-margin-right);
 }
 
 header
@@ -40,7 +45,7 @@ header
     display: flex;
     align-items: center;
     color: #2C145E;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #818388;
     font-size: 1.5vw;
     font-weight: 500;
     letter-spacing: 0.1vw;
@@ -59,7 +64,7 @@ header
     display: flex;
     position: relative;
     align-items: center;
-    height: 33vw;
+    height: 34vw;
     overflow: hidden;
     margin-left: -10vw;
     margin-right: -10vw;
@@ -146,13 +151,15 @@ header
     font-weight: 600;
 }
 
-.navigation-block
+.navigation
 {
     display: flex;
     justify-content: flex-end;
     margin-top: 5vw;
+    flex-wrap: wrap;
+    gap: 0.8vw;
 }
-.navigation
+.navigation-num
 {
     display: flex;
     justify-content: center;
@@ -164,7 +171,20 @@ header
     border-radius: 5vw;
     width: 2.6vw;
     height: 2.6vw;
-    margin-left: 0.8vw;
+    font-size: 1vw;
+}
+.navigation-current
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #841844;
+    color: white;
+    border:2px solid #841844;
+    border-radius: 5vw;
+    width: 2.6vw;
+    height: 2.6vw;
     font-size: 1vw;
 }
 .navigation-arrow
@@ -179,7 +199,6 @@ header
     border-radius: 5vw;
     width: 5.2vw;
     height: 2.6vw;
-    margin-left: 0.8vw;
     font-size: 1vw;
 }
 .navigation-arrow:hover
@@ -187,7 +206,7 @@ header
     background-color: #841844;
     color: white;
 }
-.navigation:hover
+.navigation-num:hover
 {
     background-color: #841844;
     color: white;
@@ -195,19 +214,35 @@ header
 
 .content
 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    margin-top: 2vw;
     font-weight: 500;
     font-size: 1vw;
-    display: flex;
-    align-items: flex-start;
 }
+.content-right
+{
+    display: flex;
+}
+.content-left
+{
+
+}
+
 .content-image
 {
+    display: flex;
+    height: calc(100% - 10vw);
+    max-height: 100%;
 }
 .content-image img
 {
+    
     display: flex;
+    object-fit: cover;
     width: 100%;
-    height: 60%;
+    max-height: 100%;
 }
 .content-text
 {
@@ -236,6 +271,7 @@ header
 {
     color: black;
     text-decoration: none;
+    font-weight: 400;
 }
 .current-news
 {
@@ -247,14 +283,14 @@ header
     text-decoration: none;
     color: #841844;
     background-color: white;
-    border:1px solid #841844;
+    border:2px solid #841844;
     border-radius: 5vw;
     width: 15vw;
     height: 2.5vw;
     align-items: center;
     justify-content: center;
-    margin-left: 1vw;
     font-size: 1vw;
+    margin-top: 3vw;
 }
 .back:hover
 {

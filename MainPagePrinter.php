@@ -111,13 +111,16 @@
         public function printPageList() : void
         {    
             print <<< _HTML_
-                <div class = "navigation-block">
+                <div class = "navigation">
             _HTML_;
-    
+
             for ($i = 1; $i < $this->maxPage + 1; $i++)
             {
+                $navigationNumStyle = 'navigation-num';
+                if ($i == $this->currentPage + 1) $navigationNumStyle = 'navigation-current';
+
                 print <<< _HTML_
-                    <a href = "index.php?page=$i" class = "navigation">$i</a>
+                    <a href = "index.php?page=$i" class = "$navigationNumStyle">$i</a>
                 _HTML_;
             }
             if ($this->currentPage * $this->newsPerPage + 1 < $this->maxRows)
