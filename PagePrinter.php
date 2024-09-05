@@ -20,10 +20,12 @@
 
         protected function printHeader() : void
         {
+            $logo = 'logo.png';
+
             print <<< _HTML_
                 <header class = "header">
-                    <img src = "images\logo.png" />
-                    <div>
+                    <img src = "images/$logo" />
+                    <div class = "header-text">
                         ГАЛАКТИЧЕСКИЙ<br>
                         ВЕСТНИК
                     </div>

@@ -91,10 +91,14 @@
     
                 print <<< _HTML_
                     <a href = "NewsPage.php?num=$num" class = "news">
-                        <div class = "date">$date</div>
-                        <h3>$title</h3>
-                        <div class = "announce">$announce</div>
-                        <div class = "more">ПОДРОБНЕЕ →</div>
+                        <div>
+                            <div class = "date">$date</div>
+                            <h3>$title</h3>
+                            <div class = "announce">$announce</div>
+                        </div>
+                        <div class ="href">
+                            <div class = "more">ПОДРОБНЕЕ →</div>
+                        </div>
                     </a>
                 _HTML_;
             }
