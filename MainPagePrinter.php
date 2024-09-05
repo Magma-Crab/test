@@ -92,10 +92,14 @@
                 print <<< _HTML_
                     <form action = "NewsPage.php" method = "GET">
                         <button class = "news" type = "submit" name = "num" value = "$num">
-                            <div class = "date">$date</div>
-                            <h3>$title</h3>
-                            <div class = "announce">$announce</div>
-                            <div class = "more">ПОДРОБНЕЕ →</div>
+                            <div class = "news-text">
+                                <div class = "date">$date</div>
+                                <h3>$title</h3>
+                                <div class = "announce">$announce</div>
+                            </div>
+                            <div class = "more-block">
+                                <div class = "more">ПОДРОБНЕЕ →</div>
+                            </div>
                         </button>
                     </form>
                 _HTML_;
@@ -109,14 +113,14 @@
         public function printPageList() : void
         {    
             print <<< _HTML_
-                <div class = "page-num-block">
+                <div class = "navigation-block">
             _HTML_;
     
             for ($i = 1; $i < $this->maxPage + 1; $i++)
             {
                 print <<< _HTML_
                     <form action="index.php" method="GET">
-                        <button class="page-num" type="submit" name = "page" value="$i">$i</button>
+                        <button class="navigation" type="submit" name = "page" value="$i">$i</button>
                     </form>
                 _HTML_;
             }
@@ -125,7 +129,7 @@
                 $nextPage = $this->currentPage + 2;
                 print <<< _HTML_
                     <form action="index.php" method="GET">
-                        <button class="page-num" type="submit" name = "page" value="$nextPage">→</button>
+                        <button class="navigation-arrow" type="submit" name = "page" value="$nextPage">→</button>
                     </form>
                 _HTML_;
             }

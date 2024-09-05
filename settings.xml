@@ -2,7 +2,7 @@
 
 <objects>
     <config>
-        <elem name = "newsPerPage">8</elem>
+        <elem name = "newsPerPage">4</elem>
     </config>
     <class name = "DBReader">
         <instance inst = "MySqlReader">
