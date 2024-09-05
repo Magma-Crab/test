@@ -96,7 +96,7 @@
                             <h3>$title</h3>
                             <div class = "announce">$announce</div>
                         </div>
-                        <div class ="href">
+                        <div class ="more-block">
                             <div class = "more">ПОДРОБНЕЕ →</div>
                         </div>
                     </a>

@@ -65,9 +65,10 @@
             $img = $news->getImage();
     
             print <<< _HTML_
+                <div class = "line"></div>
                 <div class = "news-path"> 
                     <a href = "index.php">Главная /</a>
-                    <span class = "current-news">$title</span>
+                    <div class = "current-news">$title</div>
                 </div>
                 <h1>$title</h1>
                 <div class = "date">$date</div>
@@ -75,7 +76,7 @@
                     <div class = "content-left">
                         <h3 class = "content-announce">$announce</h3>
                         $content
-                        <a href = index.php class = "back"> ← Назад к новостям </a>
+                        <a href = index.php class = "back"> ← НАЗАД К НОВОСТЯМ </a>
                     </div>
                     <div class = "content-right">
                         <picture class ="content-image">
@@ -94,7 +95,7 @@
                 <h1>
                     Страница не найдена
                 </h1>
-                <a href = index.php class = "back"> ← Назад к новостям </a>
+                <a href = index.php class = "back"> ← НАЗАД К НОВОСТЯМ </a>
             _HTML_;
         }
     }
