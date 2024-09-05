@@ -12,21 +12,26 @@
 
         public function printPage() : void
         {
+            if($this->verifyPage())
+            {
+                $this->printError();
+                return;
+            };
+            
+            $num = $_GET['num'];
+            $news = new Row($this->conn->getRow($num));
+
             print <<< _HTML_
+            <!DOCTYPE html>
             <html>
-            <head>
-                <link rel = "stylesheet" type = "text/css" href = "styles.css">
-        
-                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-            </head>
+            _HTML_;
+            $this->printHead($news);
+            print <<< _HTML_
             <body>
                 <div class = "work-area">
             _HTML_;
                 $this->printHeader();
-                if($this->printContent())
-                {
-                    $this->printError();
-                };
+                $this->printContent($news);
                 $this->printFooter();
             print <<< _HTML_
                 </div>
@@ -35,29 +40,20 @@
             _HTML_;
         }
         
-        public function printContent() : int
+        public function printHead(Row $news) : void
         {
-            $error = 0;
+            $title = strip_tags($news->getAnnounce());
+            print <<< _HTML_
+            <head>
+                <link rel = "stylesheet" type = "text/css" href = "styles.css">
+                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+                <title>$title</title>
+            </head>
+            _HTML_;
+        }
 
-            if (!isset($_GET['num']))
-            {
-                $error = 1;
-            }
-
-            $num = $_GET['num'];
-
-            if (!(is_numeric($num) && ($num >= 0) && $num <= $this->maxRows && (int)$num == $num))
-            {
-                $error = 1;
-            }
-
-            if ($error)
-            {
-                return $error;
-            }
-
-            $news = new Row($this->conn->getRow($num));
-    
+        public function printContent(Row $news) : void
+        {
             $title = $news->getTitle();
             $date = date('d.m.Y', strtotime($news->getDate()));
             $announce = $news->getAnnounce();
@@ -85,18 +81,55 @@
                     </div>
                 </div>
             _HTML_;
-            
-            return 0;
+        }
+
+        public function verifyPage() : int
+        {
+            $error = 0;
+
+            if (!isset($_GET['num']))
+            {
+                $error = 1;
+            }
+            else
+            {
+                $num = $_GET['num'];
+                if (!(is_numeric($num) && ($num >= 0) && $num <= $this->maxRows && (int)$num == $num))
+                {
+                    $error = 1;
+                }
+            }
+
+            return $error;
         }
 
         public function printError() : void
         {
+            print <<< _HTML_
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <link rel = "stylesheet" type = "text/css" href = "styles.css">
+                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+                <title>Ошибка</title>
+            </head>
+            <body>
+                <div class = "work-area">
+            _HTML_;
+                $this->printHeader();
             print <<< _HTML_
                 <h1>
                     Страница не найдена
                 </h1>
                 <a href = index.php class = "back"> ← НАЗАД К НОВОСТЯМ </a>
             _HTML_;
+                $this->printFooter();
+            print <<< _HTML_
+                </div>
+                </body>
+            </html>
+            _HTML_;
+            
         }
     }
 ?>

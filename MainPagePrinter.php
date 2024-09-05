@@ -26,13 +26,12 @@
         public function printPage() : void
         {
             print <<< _HTML_
+            <!DOCTYPE html>
             <html>
-            <head>
-                <link rel = "stylesheet" type = "text/css" href = "styles.css">
-        
-                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-            </head>
-            <body>
+            _HTML_;
+            $this->printHead();
+            print <<< _HTML_
+                <body>
                 <div class = "work-area">
             _HTML_;
                 $this->printHeader();
@@ -44,6 +43,18 @@
                 </div>
                 </body>
             </html>
+            _HTML_;
+        }
+
+        public function printHead() : void
+        {
+            $title = 'Галактический Вестник';
+            print <<< _HTML_
+            <head>
+                <link rel = "stylesheet" type = "text/css" href = "styles.css">
+                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+                <title>$title</title>
+            </head>
             _HTML_;
         }
 

@@ -208,12 +208,13 @@ header
 }
 .content-left
 {
-
+    
 }
 
 .content-image
 {
     display: flex;
+    width: 100%;
     height: calc(100% - 10vw);
     max-height: 100%;
 }
