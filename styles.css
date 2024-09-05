@@ -84,9 +84,7 @@ header
 
 .news
 {
-    display: grid;
-    grid-template-rows: 2fr 1fr;
-    gap:  5vw;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     text-decoration: none;
@@ -94,7 +92,6 @@ header
     border: none;
     background-color: white;
     text-align: left;
-    cursor: pointer;
     width: 38vw;
 }
 
@@ -127,13 +124,6 @@ header
     font-size: 0.8vw;
     font-weight: 100;
 }
-
-.more-block
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
 .more
 {
     width: 10vw;
@@ -156,6 +146,9 @@ header
 }
 .navigation
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: #841844;
     background-color: white;

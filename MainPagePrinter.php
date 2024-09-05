@@ -90,18 +90,12 @@
                 $announce = $news->getAnnounce();
     
                 print <<< _HTML_
-                    <form action = "NewsPage.php" method = "GET">
-                        <button class = "news" type = "submit" name = "num" value = "$num">
-                            <div class = "news-text">
-                                <div class = "date">$date</div>
-                                <h3>$title</h3>
-                                <div class = "announce">$announce</div>
-                            </div>
-                            <div class = "more-block">
-                                <div class = "more">ПОДРОБНЕЕ →</div>
-                            </div>
-                        </button>
-                    </form>
+                    <a href = "NewsPage.php?num=$num" class = "news">
+                        <div class = "date">$date</div>
+                        <h3>$title</h3>
+                        <div class = "announce">$announce</div>
+                        <div class = "more">ПОДРОБНЕЕ →</div>
+                    </a>
                 _HTML_;
             }
             
@@ -119,18 +113,14 @@
             for ($i = 1; $i < $this->maxPage + 1; $i++)
             {
                 print <<< _HTML_
-                    <form action="index.php" method="GET">
-                        <button class="navigation" type="submit" name = "page" value="$i">$i</button>
-                    </form>
+                    <a href = "index.php?page=$i" class = "navigation">$i</a>
                 _HTML_;
             }
             if ($this->currentPage * $this->newsPerPage + 1 < $this->maxRows)
             {
                 $nextPage = $this->currentPage + 2;
                 print <<< _HTML_
-                    <form action="index.php" method="GET">
-                        <button class="navigation-arrow" type="submit" name = "page" value="$nextPage">→</button>
-                    </form>
+                    <a href = "index.php?page=$nextPage" class = "navigation-arrow">→</a>
                 _HTML_;
             }
             print <<< _HTML_
