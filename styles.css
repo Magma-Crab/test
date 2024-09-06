@@ -111,12 +111,6 @@ header
     background-color: white;
     text-align: left;
 }
-.more-block
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
 .news:hover > .more-block > .more
 {
     background-color: #841844;
@@ -143,6 +137,12 @@ header
     font-size: 0.8vw;
     font-weight: 100;
 }
+.more-block
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
 .more
 {
     display: flex;
@@ -153,7 +153,8 @@ header
     width: 10vw;
     height: 2.4vw;
     font-size: 0.8vw;
-    font-weight: 600;
+    font-weight: 600;    
+    color: #841844;
 }
 
 .navigation
@@ -263,6 +264,7 @@ header
 {
     width: 14vw;
     font-size: 0.9vw;
+    font-weight: 600;
     margin-top: 3vw;
 }
 
@@ -275,4 +277,101 @@ header
     font-size: 1vw;
     font-weight: 600;
     border-top: 1px solid #818388;
+}
+
+
+/*Стрелка .navigation-arrow*/
+.navigation-arrow:hover div, .navigation-arrow:hover div::after, .navigation-arrow:hover div::before
+{
+    background-color: white;
+}
+.navigation-arrow div
+{
+    background-color:#841844;
+    width: 1vw;
+    height: 0.1vw;
+    border-radius: 5vw;
+}
+.navigation-arrow div::after, .navigation-arrow div::before
+{
+    position: absolute;
+    content: '';
+    background-color: #841844;
+    width: 0.5vw;
+    height: 0.15vw;
+    margin-left: 0.49vw;
+
+    margin-top: 0.18vw;
+    transform: rotate(-45deg);
+}
+.navigation-arrow div::before
+{
+    transform: rotate(45deg);
+    margin-top: -0.25vw;
+}
+
+/*Стрелка .more-arrow*/
+.news:hover .more-arrow div, .news:hover .more-arrow div::after, .news:hover .more-arrow div::before
+{
+    background-color: white;
+}
+.more-arrow
+{
+    margin-left: 0.3vw;
+}
+.more-arrow div
+{
+    background-color: #841844;
+    width: 1.5vw;
+    height: 0.15vw;
+    border-radius: 5vw;
+}
+.more-arrow div::after, .more-arrow div::before
+{
+    position: absolute;
+    content: '';
+    background-color: #841844;
+    width: 0.5vw;
+    height: 0.15vw;
+    transform: rotate(45deg);
+    margin-top: -0.17vw;
+    margin-left: 1vw;
+}
+.more-arrow div::before
+{
+    margin-top: 0.23vw;
+    transform: rotate(-45deg);
+}
+
+/*Стрелка .back-arrow*/
+.back:hover .back-arrow div, .back:hover .back-arrow div::after, .back:hover .back-arrow div::before
+{
+    background-color: white;
+}
+.back-arrow
+{
+    margin-right: 0.3vw;
+}
+.back-arrow div
+{
+    background-color: #841844;
+    width: 1.5vw;
+    height: 0.15vw;
+    border-radius: 5vw;
+}
+.back-arrow div::after, .back-arrow div::before
+{
+    position: absolute;
+    content: '';
+    background-color: #841844;
+    width: 0.5vw;
+    height: 0.15vw;
+    transform: rotate(45deg);
+    margin-top: 0.18vw;
+    margin-left: -0.1vw;
+}
+.back-arrow div::before
+{
+    margin-top: -0.18vw;
+    transform: rotate(-45deg);
 }

@@ -108,7 +108,9 @@
                             <div class = "announce">$announce</div>
                         </div>
                         <div class ="more-block">
-                            <div class = "more">ПОДРОБНЕЕ →</div>
+                            <div class = "more">ПОДРОБНЕЕ
+                                <div class = "more-arrow"><div></div></div>
+                            </div>
                         </div>
                     </a>
                 _HTML_;
@@ -138,7 +140,7 @@
             {
                 $nextPage = $this->currentPage + 2;
                 print <<< _HTML_
-                    <a href = "index.php?page=$nextPage" class = "navigation-arrow">→</a>
+                    <a href = "index.php?page=$nextPage" class = "navigation-arrow"><div></div></a>
                 _HTML_;
             }
             print <<< _HTML_
