@@ -10,7 +10,14 @@
             string $password
          )
         {
-            $this->conn = new PDO("mysql:host=$host; dbname=$dbname;", $user, $password);
+            try
+            {
+                $this->conn = new PDO("mysql:host=$host; dbname=$dbname;", $user, $password);
+            }
+            catch(Throwable $e)
+            {
+                Exit("Проблема с бд");
+            }
         }
 
         public function getRow(int $n) : array
