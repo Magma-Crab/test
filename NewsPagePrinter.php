@@ -28,7 +28,7 @@
                 $num = $_GET['num'];
                 $news = new Row($this->conn->getRow($num));
 
-                $title = strip_tags($news->getAnnounce());
+                $title = strip_tags($news->getTitle());
                 $content = $this->prepareContent($news);
             }
 

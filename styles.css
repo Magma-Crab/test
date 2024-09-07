@@ -70,24 +70,27 @@ header
 
 .banner
 {
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     height: 34vw;
-    overflow: hidden;
     margin-left: calc(0px - var(--default-margin-left));
     margin-right: calc(0px - var(--default-margin-right));
 }
 .banner img
 {
+    position: absolute;
     width: 100%;
     height: auto;
+    top: -30vw;
 }
 .banner-text
 {
-    color: white;
     position: absolute;
     margin-left: var(--default-margin-left);
     margin-right: var(--default-margin-right);
+    color: white;
     font-size: 1.7vw;
     font-weight: 350;
 }
@@ -133,7 +136,7 @@ header
     justify-content: center;
     border-radius: 10vw;
     background-color: #ECF2F5;
-    color: #86898f;
+    color: #58595c;
     font-size: 0.8vw;
     font-weight: 100;
 }
@@ -212,11 +215,6 @@ header
 {
     display: flex;
 }
-.content-left
-{
-    
-}
-
 .content-image
 {
     display: flex;
