@@ -21,6 +21,8 @@
 
                         $instance = function() use ($instname, $args)
                         {
+                            require_once("$instname.php");
+
                             $rc = new ReflectionClass($instname);
                             return $rc->newInstance(...$args);
                         };
@@ -29,6 +31,8 @@
                     {
                         $instance = function() use ($instname)
                         {
+                            require_once("$instname.php");
+
                             $rc = new ReflectionClass($instname);
                             return $rc->newInstance();
                         };

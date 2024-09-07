@@ -1,6 +1,4 @@
 <?php
-    require_once("MySqlReader.php"); 
-
     class Row
     {
         public function __construct(

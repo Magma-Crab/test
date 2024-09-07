@@ -118,7 +118,7 @@
                 "<h1>
                     Страница не найдена
                 </h1>
-                <a href = index.php class = 'back'> ← НАЗАД К НОВОСТЯМ </a>";
+                <a href = index.php class = 'back'><div class = 'back-arrow'><div></div></div>НАЗАД К НОВОСТЯМ </a>";
 
             return $ret;
         }
