@@ -44,7 +44,7 @@
             print $page;
         }
 
-        public function prepareHead() : string
+        private function prepareHead() : string
         {
             $title = 'Галактический Вестник';
 
@@ -58,7 +58,7 @@
             return $ret;
         }
 
-        public function prepareBanner(int $n) : string
+        private function prepareBanner(int $n) : string
         {
             $news = new Row($this->conn->getRow($n));
     
@@ -78,7 +78,7 @@
             return $ret;
         }
 
-        public function prepareNewsList() : string
+        private function prepareNewsList() : string
         {    
             $ret =
                 "<h2>Новости</h2>
@@ -123,7 +123,7 @@
             return $ret;
         }
 
-        public function preparePageList() : string
+        private function preparePageList() : string
         {    
             $ret =
                 "<div class = 'navigation'>";

@@ -48,7 +48,7 @@
             print $page;
         }
         
-        public function prepareHead(string $title) : string
+        private function prepareHead(string $title) : string
         {
             $ret = 
                 "<head>
@@ -60,7 +60,7 @@
             return $ret;
         }
 
-        public function prepareContent(Row $news) : string
+        private function prepareContent(Row $news) : string
         {
             $title = $news->getTitle();
             $date = date('d.m.Y', strtotime($news->getDate()));
@@ -94,7 +94,7 @@
             return $ret;
         }
 
-        public function verifyPage() : int
+        private function verifyPage() : int
         {
             $error = 0;
 
@@ -115,7 +115,7 @@
             return $error;
         }
 
-        public function prepareError(int $error) : string
+        private function prepareError(int $error) : string
         {
             $ret = 
                 "<h1>

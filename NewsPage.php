@@ -2,7 +2,7 @@
     require_once("NewsPagePrinter.php");
     require_once("DI.php");
 
-    main()
+    function main() : void
     {
         $di = new DI();
         $di->configure("settings.xml");
