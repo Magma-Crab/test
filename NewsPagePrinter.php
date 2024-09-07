@@ -21,7 +21,7 @@
             if ($error)
             {
                 $title = 'Ошибка';
-                $content = $this->prepareError();
+                $content = $this->prepareError($error);
             }
             else
             {
@@ -112,7 +112,7 @@
             return $error;
         }
 
-        public function prepareError() : string
+        public function prepareError(int $error) : string
         {
             $ret = 
                 "<h1>
