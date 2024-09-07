@@ -5,7 +5,7 @@
 
     abstract class PagePrinter
     {
-        protected $conn;
+        protected DBReader $conn;
         protected int $maxRows = 0;
 
         public function __construct(

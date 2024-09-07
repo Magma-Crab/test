@@ -16,6 +16,7 @@
             if (isset($_GET['page']))
             {
                 $page = $_GET['page'];
+                $page = htmlspecialchars($page);
                 if (is_numeric($page) && ($page > 0) && $page <= $this->maxPage && (int)$page == $page)
                 {
                     $this->currentPage = $page - 1;

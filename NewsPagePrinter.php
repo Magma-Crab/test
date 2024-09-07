@@ -103,6 +103,7 @@
             else
             {
                 $num = $_GET['num'];
+                $num = htmlspecialchars($num);
                 if (!(is_numeric($num) && ($num >= 0) && $num <= $this->maxRows && (int)$num == $num))
                 {
                     $error = 1;
