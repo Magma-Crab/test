@@ -111,12 +111,12 @@ header
     background-color: white;
     text-align: left;
 }
-.news:hover > .more-block > .more
+.news:hover .more
 {
     background-color: #841844;
     color: white;
 }
-.news:hover > div > h3
+.news:hover h3
 {
     color: #841844;
 }
@@ -165,7 +165,10 @@ header
     flex-wrap: wrap;
     gap: 0.8vw;
 }
-.navigation-num, .navigation-current, .navigation-arrow, .back
+.navigation-num, 
+.navigation-current, 
+.navigation-arrow, 
+.back
 {
     display: flex;
     justify-content: center;
@@ -188,7 +191,9 @@ header
 {
     width: 5.2vw;
 }
-.navigation-arrow:hover, .navigation-num:hover,.back:hover
+.navigation-arrow:hover, 
+.navigation-num:hover,
+.back:hover
 {
     background-color: #841844;
     color: white;
@@ -281,7 +286,9 @@ header
 
 
 /*Стрелка .navigation-arrow*/
-.navigation-arrow:hover div, .navigation-arrow:hover div::after, .navigation-arrow:hover div::before
+.navigation-arrow:hover div, 
+.navigation-arrow:hover div::after, 
+.navigation-arrow:hover div::before
 {
     background-color: white;
 }
@@ -292,7 +299,8 @@ header
     height: 0.1vw;
     border-radius: 5vw;
 }
-.navigation-arrow div::after, .navigation-arrow div::before
+.navigation-arrow div::after, 
+.navigation-arrow div::before
 {
     position: absolute;
     content: '';
@@ -311,7 +319,9 @@ header
 }
 
 /*Стрелка .more-arrow*/
-.news:hover .more-arrow div, .news:hover .more-arrow div::after, .news:hover .more-arrow div::before
+.news:hover .more-arrow div, 
+.news:hover .more-arrow div::after, 
+.news:hover .more-arrow div::before
 {
     background-color: white;
 }
@@ -326,7 +336,8 @@ header
     height: 0.15vw;
     border-radius: 5vw;
 }
-.more-arrow div::after, .more-arrow div::before
+.more-arrow div::after, 
+.more-arrow div::before
 {
     position: absolute;
     content: '';
@@ -334,17 +345,19 @@ header
     width: 0.5vw;
     height: 0.15vw;
     transform: rotate(45deg);
-    margin-top: -0.17vw;
-    margin-left: 1vw;
+    margin-top: -0.15vw;
+    margin-left: 1.1vw;
 }
 .more-arrow div::before
 {
-    margin-top: 0.23vw;
+    margin-top: 0.15vw;
     transform: rotate(-45deg);
 }
 
 /*Стрелка .back-arrow*/
-.back:hover .back-arrow div, .back:hover .back-arrow div::after, .back:hover .back-arrow div::before
+.back:hover .back-arrow div, 
+.back:hover .back-arrow div::after, 
+.back:hover .back-arrow div::before
 {
     background-color: white;
 }
@@ -359,7 +372,8 @@ header
     height: 0.15vw;
     border-radius: 5vw;
 }
-.back-arrow div::after, .back-arrow div::before
+.back-arrow div::after, 
+.back-arrow div::before
 {
     position: absolute;
     content: '';
@@ -367,11 +381,11 @@ header
     width: 0.5vw;
     height: 0.15vw;
     transform: rotate(45deg);
-    margin-top: 0.18vw;
+    margin-top: 0.15vw;
     margin-left: -0.1vw;
 }
 .back-arrow div::before
 {
-    margin-top: -0.18vw;
+    margin-top: -0.15vw;
     transform: rotate(-45deg);
 }
