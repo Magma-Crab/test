@@ -27,19 +27,19 @@
         public function printPage() : void
         {
             $page = 
-            "<!DOCTYPE html>
-            <html>".
-                $this->prepareHead().
-                "<body>
-                    <div class = 'work-area'>".
-                        $this->prepareHeader().
-                        $this->prepareBanner(0).
-                        $this->prepareNewsList().
-                        $this->preparePageList().
-                        $this->prepareFooter().
-                    "</div>
-                </body>
-            </html>";
+                "<!DOCTYPE html>
+                <html>".
+                    $this->prepareHead().
+                    "<body>
+                        <div class = 'work-area'>".
+                            $this->prepareHeader().
+                            $this->prepareBanner(0).
+                            $this->prepareNewsList().
+                            $this->preparePageList().
+                            $this->prepareFooter().
+                        "</div>
+                    </body>
+                </html>";
 
             print $page;
         }
@@ -99,9 +99,11 @@
                 $date = date('d.m.Y', strtotime($date));
                 $title = $news->getTitle();
                 $announce = $news->getAnnounce();
-    
+                
+                $page = $this->currentPage + 1;
+
                 $ret .=
-                    "<a href = 'NewsPage.php?num=$num' class = 'news'>
+                    "<a href = 'NewsPage.php?num=$num&page=$page' class = 'news'>
                         <div>
                             <div class = 'date'>$date</div>
                             <h3>$title</h3>

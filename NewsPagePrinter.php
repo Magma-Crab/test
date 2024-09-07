@@ -67,6 +67,8 @@
             $announce = $news->getAnnounce();
             $content = $news->getContent();
             $img = $news->getImage();
+
+            $page = htmlspecialchars($_GET['page']);
             
             $ret =
                 "<div class = 'line'></div>
@@ -80,7 +82,7 @@
                     <div class = 'content-left'>
                         <h3 class = 'content-announce'>$announce</h3>
                         $content
-                        <a href = index.php class = 'back'><div class = 'back-arrow'><div></div></div>НАЗАД К НОВОСТЯМ </a>
+                        <a href = index.php?page=$page class = 'back'><div class = 'back-arrow'><div></div></div>НАЗАД К НОВОСТЯМ </a>
                     </div>
                     <div class = 'content-right'>
                         <picture class ='content-image'>
