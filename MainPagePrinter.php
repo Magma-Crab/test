@@ -25,40 +25,39 @@
 
         public function printPage() : void
         {
-            print <<< _HTML_
-            <!DOCTYPE html>
-            <html>
-            _HTML_;
-            $this->printHead();
-            print <<< _HTML_
-                <body>
-                <div class = "work-area">
-            _HTML_;
-                $this->printHeader();
-                $this->printBanner(0);
-                $this->printNewsList();
-                $this->printPageList();
-                $this->printFooter();
-            print <<< _HTML_
-                </div>
+            $page = 
+            "<!DOCTYPE html>
+            <html>".
+                $this->prepareHead().
+                "<body>
+                    <div class = 'work-area'>".
+                        $this->prepareHeader().
+                        $this->prepareBanner(0).
+                        $this->prepareNewsList().
+                        $this->preparePageList().
+                        $this->prepareFooter().
+                    "</div>
                 </body>
-            </html>
-            _HTML_;
+            </html>";
+
+            print $page;
         }
 
-        public function printHead() : void
+        public function prepareHead() : string
         {
             $title = 'Галактический Вестник';
-            print <<< _HTML_
-            <head>
-                <link rel = "stylesheet" type = "text/css" href = "styles.css">
-                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-                <title>$title</title>
-            </head>
-            _HTML_;
+
+            $ret = 
+                "<head>
+                    <link rel = 'stylesheet' type = 'text/css' href = 'styles.css'>
+                    <link href='https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap' rel='stylesheet'>
+                    <title>$title</title>
+                </head>";
+
+            return $ret;
         }
 
-        public function printBanner(int $n) : void
+        public function prepareBanner(int $n) : string
         {
             $news = new Row($this->conn->getRow($n));
     
@@ -66,23 +65,23 @@
             $img = $news->getImage();
             $title = $news->getTitle();
     
-            print <<< _HTML_
-                <div class = "banner">
-                    <img src = "images/$img">
-                    <div class = "banner-text">
+            $ret =
+                "<div class = 'banner'>
+                    <img src = 'images/$img'>
+                    <div class = 'banner-text'>
                         <h1>$title</h1>
                         $text
                     </div>
-                </div>
-            _HTML_;
+                </div>";
+
+            return $ret;
         }
 
-        public function printNewsList() : void
+        public function prepareNewsList() : string
         {    
-            print <<< _HTML_
-                <h2>Новости</h2>
-                <div class = "news-list">
-            _HTML_;
+            $ret =
+                "<h2>Новости</h2>
+                <div class = 'news-list'>";
     
             for ($i = 0; $i < $this->newsPerPage; $i++)
             {
@@ -100,52 +99,52 @@
                 $title = $news->getTitle();
                 $announce = $news->getAnnounce();
     
-                print <<< _HTML_
-                    <a href = "NewsPage.php?num=$num" class = "news">
+                $ret .=
+                    "<a href = 'NewsPage.php?num=$num' class = 'news'>
                         <div>
-                            <div class = "date">$date</div>
+                            <div class = 'date'>$date</div>
                             <h3>$title</h3>
-                            <div class = "announce">$announce</div>
+                            <div class = 'announce'>$announce</div>
                         </div>
-                        <div class ="more-block">
-                            <div class = "more">ПОДРОБНЕЕ
-                                <div class = "more-arrow"><div></div></div>
+                        <div class ='more-block'>
+                            <div class = 'more'>ПОДРОБНЕЕ
+                                <div class = 'more-arrow'><div></div></div>
                             </div>
                         </div>
-                    </a>
-                _HTML_;
+                    </a>";
             }
-            
-            print <<< _HTML_
-                </div>
-            _HTML_;
+
+            $ret .= 
+                "</div>";
+
+            return $ret;
         }
 
-        public function printPageList() : void
+        public function preparePageList() : string
         {    
-            print <<< _HTML_
-                <div class = "navigation">
-            _HTML_;
+            $ret =
+                "<div class = 'navigation'>";
 
             for ($i = 1; $i < $this->maxPage + 1; $i++)
             {
                 $navigationNumStyle = 'navigation-num';
                 if ($i == $this->currentPage + 1) $navigationNumStyle = 'navigation-current';
 
-                print <<< _HTML_
-                    <a href = "index.php?page=$i" class = "$navigationNumStyle">$i</a>
-                _HTML_;
+                $ret .=
+                    "<a href = 'index.php?page=$i' class = '$navigationNumStyle'>$i</a>";
             }
             if ($this->currentPage * $this->newsPerPage + 1 < $this->maxRows)
             {
                 $nextPage = $this->currentPage + 2;
-                print <<< _HTML_
-                    <a href = "index.php?page=$nextPage" class = "navigation-arrow"><div></div></a>
-                _HTML_;
+                
+                $ret .=
+                    "<a href = 'index.php?page=$nextPage' class = 'navigation-arrow'><div></div></a>";
             }
-            print <<< _HTML_
-                </div>
-            _HTML_;
+
+            $ret .= 
+                "</div>";
+
+            return $ret;
         }
     }
 ?>

@@ -18,28 +18,30 @@
 
         abstract public function printPage() : void; 
 
-        protected function printHeader() : void
+        protected function prepareHeader() : string
         {
             $logo = 'logo.png';
 
-            print <<< _HTML_
-                <header class = "header">
-                    <img src = "images/$logo" />
-                    <div class = "header-text">
+            $ret = 
+                "<header class = 'header'>
+                    <img src = 'images/$logo' />
+                    <div class = 'header-text'>
                         ГАЛАКТИЧЕСКИЙ<br>
                         ВЕСТНИК
                     </div>
-                </header>
-            _HTML_;
+                </header>";
+
+            return $ret;
         }
 
-        protected function printFooter() : void
+        protected function prepareFooter() : string
         {
-            print <<< _HTML_
-            <footer class = "footer">
-                © 2023 — 2412 «Галактический вестник»
-            </footer>
-            _HTML_;
+            $ret = 
+                "<footer class = 'footer'>
+                    © 2023 — 2412 «Галактический вестник»
+                </footer>";
+
+            return $ret;
         }
     }
 ?>
