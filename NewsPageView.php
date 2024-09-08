@@ -1,41 +1,32 @@
 <?php
-    require_once('PagePrinter.php');
+    require_once("PageView.php");
 
-    class NewsPagePrinter extends PagePrinter
+    class NewsPageView extends PageView
     {
         public function __construct(
-            DI $di
+                private ?News $news, 
+                private string $title, 
+                private int $error
             )
-        {
-            parent::__construct($di);
-        }
+        {}
 
         public function printPage() : void
         {
-            $error = $this->verifyPage();
-
-            $title = 0;
             $content = 0;
-            $news = 0;
 
-            if ($error)
+            if ($this->error)
             {
-                $title = 'Ошибка';
-                $content = $this->prepareError($error);
+                $content = $this->prepareError($this->error);
             }
             else
             {
-                $num = $_GET['num'];
-                $news = new Row($this->conn->getRow($num));
-
-                $title = strip_tags($news->getTitle());
-                $content = $this->prepareContent($news);
+                $content = $this->prepareContent();
             }
 
             $page = 
                 "<!DOCTYPE html>
                 <html>".
-                    $this->prepareHead($title).
+                    $this->prepareHead().
                 "<body>
                     <div class = 'work-area'>".
                         $this->prepareHeader().
@@ -47,29 +38,28 @@
 
             print $page;
         }
-        
-        private function prepareHead(string $title) : string
+
+        private function prepareHead() : string
         {
             $ret = 
                 "<head>
                     <link rel = 'stylesheet' type = 'text/css' href = 'styles.css'>
                     <link href='https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap' rel='stylesheet'>
-                    <title>$title</title>
+                    <title>$this->title</title>
                 </head>";
 
             return $ret;
         }
 
-        private function prepareContent(Row $news) : string
+        private function prepareContent() : string
         {
-            $title = $news->getTitle();
-            $date = date('d.m.Y', strtotime($news->getDate()));
-            $announce = $news->getAnnounce();
-            $content = $news->getContent();
-            $img = $news->getImage();
+            $title = $this->news->getTitle();
+            $date = $this->news->getDate();
+            $announce = $this->news->getAnnounce();
+            $content = $this->news->getContent();
+            $img = $this->news->getImage();
+            $href = $this->news->getHref();
 
-            $page = htmlspecialchars($_GET['page']);
-            
             $ret =
                 "<div class = 'line'></div>
                 <div class = 'news-path'> 
@@ -82,7 +72,7 @@
                     <div class = 'content-left'>
                         <h3 class = 'content-announce'>$announce</h3>
                         $content
-                        <a href = index.php?page=$page class = 'back'><div class = 'back-arrow'><div></div></div>НАЗАД К НОВОСТЯМ </a>
+                        <a href = '$href' class = 'back'><div class = 'back-arrow'><div></div></div>НАЗАД К НОВОСТЯМ </a>
                     </div>
                     <div class = 'content-right'>
                         <picture class ='content-image'>
@@ -92,27 +82,6 @@
                 </div>";
 
             return $ret;
-        }
-
-        private function verifyPage() : int
-        {
-            $error = 0;
-
-            if (!isset($_GET['num']))
-            {
-                $error = 1;
-            }
-            else
-            {
-                $num = $_GET['num'];
-                $num = htmlspecialchars($num);
-                if (!(is_numeric($num) && ($num >= 0) && $num <= $this->maxRows && (int)$num == $num))
-                {
-                    $error = 1;
-                }
-            }
-
-            return $error;
         }
 
         private function prepareError(int $error) : string

@@ -1,20 +1,10 @@
 <?php
-    require_once("DBReader.php");
-    require_once("Row.php");
-    require_once("DI.php");
+    require_once("News.php");
 
-    abstract class PagePrinter
+    abstract class PageView
     {
-        protected DBReader $conn;
-        protected int $maxRows = 0;
-
-        public function __construct(
-            DI $di
-            )
-        {
-            $this->conn = $di->get(DBReader::class);
-            $this->maxRows = $this->conn->countRows();
-        }
+        public function __construct()
+        {   }
 
         abstract public function printPage() : void; 
 

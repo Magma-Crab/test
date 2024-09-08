@@ -1,5 +1,5 @@
 <?php
-    class Row
+    class News
     {
         public function __construct(
             private array $data
@@ -25,6 +25,10 @@
         public function getImage()
         {
             return $this->data['image'];
+        }
+        public function getHref()
+        {
+            return $this->data['href'];
         }
     }    
 ?>
