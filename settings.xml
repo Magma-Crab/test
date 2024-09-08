@@ -8,8 +8,8 @@
         <instance inst = "MySqlReader">
             <arg>localhost</arg>
             <arg>news</arg>
-            <arg>root</arg>
-            <arg>admin</arg>
+            <arg>user</arg>
+            <arg>password</arg>
         </instance>
     </class>
 </objects>
