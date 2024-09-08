@@ -1,6 +1,5 @@
 <?php
     require_once("MainPagePrinter.php");
-    require_once("DI.php");
 
     function main() : void
     {
