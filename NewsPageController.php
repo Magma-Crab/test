@@ -14,7 +14,7 @@
         {
             parent::__construct($di);
 
-            $this->error = $this->verifyPage();
+            $this->error = $this->verifyNews();
 
             if (!$this->error)
             {
@@ -40,7 +40,7 @@
             return $news;
         }
 
-        private function verifyPage() : int
+        private function verifyNews() : int
         {
             $error = 0;
 

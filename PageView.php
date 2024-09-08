@@ -4,7 +4,7 @@
     abstract class PageView
     {
         public function __construct()
-        {   }
+        {}
 
         abstract public function printPage() : void; 
 

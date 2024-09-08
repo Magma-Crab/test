@@ -1,7 +1,6 @@
 <?php
     require_once("DBReader.php");
     require_once("DI.php");
-    require_once("PageView.php");
     require_once('News.php');
 
     abstract class PageController

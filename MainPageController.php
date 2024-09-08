@@ -1,22 +1,18 @@
 <?php
-    require_once("DI.php");
+    require_once("PageController.php");
     require_once("MainPageView.php");
-    require_once("News.php");   
 
-    class MainPageController
+    class MainPageController extends PageController
     {
         private int $newsPerPage = 0;
         private int $currentPage = 1;
         private int $maxPage = 0;
-        private int $maxRows = 0;
-        private DBReader $conn;
 
         public function __construct(DI $di)
         {
-            $this->conn = $di->get(DBReader::class);
-            $this->newsPerPage = $di->get('newsPerPage');
-            
-            $this->maxRows = $this->conn->countRows();            
+            parent::__construct($di);
+
+            $this->newsPerPage = $di->get('newsPerPage');           
             $this->maxPage = ceil($this->maxRows / $this->newsPerPage);
 
             $this->currentPage = $this->verifyPage();
@@ -46,17 +42,6 @@
 
             $page = new MainPageView($newsList, $pageList, $banner, $this->currentPage);
             $page->printPage();
-        }
-
-        private function prepareNews(array $row, string $href = 'index.php') : News
-        {
-            $date = $row['date'];
-            $date = date('d.m.Y', strtotime($date));
-            $row['date'] = $date;
-
-            $row['href'] = $href;
-
-            return new News($row);
         }
 
         private function prepareBanner(int $n) : News
